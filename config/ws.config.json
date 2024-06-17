@@ -1,0 +1,12 @@
+{
+    "backend_servers": [
+        "wss://rpc-0.example.com",
+        "wss://rpc-1.example.com",
+        "wss://rpc-2.example.com"
+    ],
+    "valid_tokens": [
+        "KRerXv2khNRJL33X3kbn0NYf9hGWhS31",
+        "JFM95dorKK8qL09H5jfo8XfDy1FVWXeM"
+    ],
+    "load_balancing_algorithm": "round_robin"
+}

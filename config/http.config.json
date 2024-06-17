@@ -1,0 +1,12 @@
+{
+    "backend_servers": [
+        "http://10.0.0.1",
+        "http://10.0.0.2",
+        "https://abc.xyz"
+    ],
+    "valid_tokens": [
+        "ZMXDbrfKMCUFkVHJpV27wQzYpCz9ToYW",
+        "yqhrsFAFGLopGcMTVyOf4SOzn6M8vGGq"
+    ],
+    "load_balancing_algorithm": "round_robin"
+}
