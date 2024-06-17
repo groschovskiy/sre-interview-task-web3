@@ -1,0 +1,22 @@
+version: "3"
+services:
+  dev-http-fleet-1:
+      image: "traefik/whoami"
+      container_name: "dev-http-fleet-1"
+      ports:
+        - "8080:80"
+  dev-http-fleet-2:
+      image: "traefik/whoami"
+      container_name: "dev-http-fleet-2"
+      ports:
+        - "8081:80"
+  dev-ws-fleet-1:
+      image: "ksdn117/web-socket-test"
+      container_name: "dev-ws-fleet-1"
+      ports:
+        - "8010:8010"
+  dev-ws-fleet-2:
+      image: "ksdn117/web-socket-test"
+      container_name: "dev-ws-fleet-2"
+      ports:
+        - "8011:8010"
