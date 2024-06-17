@@ -14,7 +14,7 @@ This project implements a lightweight load balancer written in Go Lang. It suppo
 ### Prerequisites
 * Git
 * Make
-* Go 1.20 or later (https://go.dev/doc/install)
+* Go 1.22.3 or later (https://go.dev/doc/install)
 
 ### Clone the repository
 ```
