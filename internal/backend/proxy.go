@@ -180,7 +180,7 @@ func (p *ReverseProxy) HandleGracefulShutdown() {
 		log.Printf("Error during server shutdown: %v", err)
 	}
 
-	timeout := time.After(4 * time.Second) // TODO: - Adjust the timeout as needed
+	timeout := time.After(900 * time.Second) // TODO: - Adjust the timeout as needed
 	for {
 		select {
 		case <-timeout:
