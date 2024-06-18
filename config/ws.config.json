@@ -8,5 +8,5 @@
         "KRerXv2khNRJL33X3kbn0NYf9hGWhS31",
         "JFM95dorKK8qL09H5jfo8XfDy1FVWXeM"
     ],
-    "load_balancing_algorithm": "round_robin"
+    "load_balancing_algorithm": "roundrobin"
 }
