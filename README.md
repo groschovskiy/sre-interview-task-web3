@@ -12,16 +12,19 @@ This project implements a lightweight load balancer written in Go Lang. It suppo
 ## Getting Started
 
 ### Prerequisites
+
 * Git
 * Make
 * Go 1.22.3 or later (https://go.dev/doc/install)
 
 ### Clone the repository
+
 ```
 git clone git@github.com:groschovskiy/sre-interview-task-web3.git
 ```
 
 ### Build the load balancer
+
 ```
 cd sre-interview-task-web3
 go mod tidy
@@ -29,8 +32,15 @@ go build -o cloud-lb ./cmd/main.go
 ```
 
 ### Run the load balancer
+
 ```
 ./cloud-lb -config config.json
+```
+
+### Run the testing containers
+```
+cd scripts
+docker-compose up -d
 ```
 
 ## Go Directories
@@ -41,7 +51,7 @@ Main applications for this project.
 
 ### `/scripts`
 
-Scripts to perform various build, install, analysis, etc operations.
+Scripts to perform various build, install, analysis, etc operations. For a seamless testing experience, consider leveraging the `docker-compose.yaml` file, which provides an additional layer of flexibility and ease-of-use for testing your backend services.
 
 ### `/internal`
 
@@ -50,7 +60,3 @@ Private application and library code.
 ### `/configs`
 
 Configuration file templates or default configs.
-
-### `/build`
-
-Packaging and Continuous Integration.
