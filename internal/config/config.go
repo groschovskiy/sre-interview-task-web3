@@ -1,4 +1,4 @@
-package backend
+package config
 
 import (
 	"encoding/json"
@@ -7,8 +7,9 @@ import (
 )
 
 type Config struct {
-	AuthToken      []string `json:"valid_tokens"`
-	BackendServers []string `json:"backend_servers"`
+	AuthToken       []string `json:"valid_tokens"`
+	BackendServers  []string `json:"backend_servers"`
+	LoadBalanceAlgo string   `json:"load_balancing_algorithm"`
 }
 
 func ReadConfigFile(filename string) *Config {
