@@ -8,5 +8,12 @@
         "ZMXDbrfKMCUFkVHJpV27wQzYpCz9ToYW",
         "yqhrsFAFGLopGcMTVyOf4SOzn6M8vGGq"
     ],
-    "load_balancing_algorithm": "roundrobin"
+    "load_balancing_algorithm": "roundrobin",
+    "health_check": {
+        "path": "/",
+        "resp_code": 200,
+        "interval": 5,
+        "timeout": 3,
+        "method": "GET"
+    }
 }
