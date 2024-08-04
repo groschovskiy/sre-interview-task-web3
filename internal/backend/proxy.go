@@ -26,6 +26,12 @@ type ReverseProxy struct {
 	wsMux          sync.Mutex
 	wsConns        map[*websocket.Conn]bool
 	currentBackend int
+	metrics        *Metrics
+}
+
+type responseWriterWrapper struct {
+	http.ResponseWriter
+	metrics *Metrics
 }
 
 func NewReverseProxy(config *config.Config) *ReverseProxy {
@@ -49,6 +55,7 @@ func NewReverseProxy(config *config.Config) *ReverseProxy {
 		backendServers: backendServers,
 		upgrader:       upgrader,
 		wsConns:        make(map[*websocket.Conn]bool),
+		metrics:        NewMetrics(),
 	}
 
 	httpServer := &http.Server{
@@ -81,6 +88,11 @@ func (p *ReverseProxy) Serve() {
 }
 
 func (p *ReverseProxy) HandleRequest(w http.ResponseWriter, r *http.Request) {
+	p.metrics.IncrementRequests()
+	receivedBytes := uint64(r.ContentLength)
+	p.metrics.AddBytesReceived(receivedBytes)
+	p.metrics.AddTotalBytesReceived(receivedBytes)
+
 	if websocket.IsWebSocketUpgrade(r) {
 		p.HandleWebSocket(w, r)
 		return
@@ -95,7 +107,9 @@ func (p *ReverseProxy) HandleRequest(w http.ResponseWriter, r *http.Request) {
 	proxy := httputil.NewSingleHostReverseProxy(target)
 	r.Host = target.Host
 
-	proxy.ServeHTTP(w, r)
+	// Wrap the ResponseWriter to capture bytes sent
+	wrappedWriter := &responseWriterWrapper{ResponseWriter: w, metrics: p.metrics}
+	proxy.ServeHTTP(wrappedWriter, r)
 }
 
 func (p *ReverseProxy) HandleWebSocket(w http.ResponseWriter, r *http.Request) {

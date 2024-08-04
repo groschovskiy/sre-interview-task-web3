@@ -10,6 +10,7 @@ func main() {
 	proxy := backend.NewReverseProxy(config)
 
 	go proxy.Serve()
+	go proxy.LogMetrics()
 
 	proxy.HandleGracefulShutdown()
 }
